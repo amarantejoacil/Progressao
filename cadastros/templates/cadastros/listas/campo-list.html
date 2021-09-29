@@ -1,0 +1,38 @@
+{% extends 'modelo.html '%}
+
+{% load static %}
+
+
+{% block conteudo %}
+    <h3>Listas de campos</h3>
+    <hr>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Opções</th>
+            </tr>
+
+            {% for c in object_list %}
+                <tr>
+                    
+                    <td>{{ c.pk }}</td>
+                    <td>{{ c.nome }}</td>
+                    <td>{{ c.descricao }}</td>
+                    <td>
+                        <a href="{% url 'editar-campo' c.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
+                        <a href="{% url 'excluir-campo' c.pk %}" class="btn btn-danger btn-sm"  title="Excluir">Excluir</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Nenhum campo registrado</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}
