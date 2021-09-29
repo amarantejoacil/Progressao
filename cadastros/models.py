@@ -19,4 +19,4 @@ class Atividade(models.Model):
     campo = models.ForeignKey('Campo', on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.descricao + ' - ' + str(self.campo)
+        return self.descricao 
