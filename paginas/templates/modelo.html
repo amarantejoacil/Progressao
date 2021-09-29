@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block titulo %}
+        <title>Modelo</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+
+    {% block menu %}
+        <div class="bg-ligth">
+            menu
+        </div>
+    {% endblock %}
+    
+
+    {% block destaque %}    
+        <div class="bg-secondary">
+            destaque
+        </div>
+    {% endblock %}
+
+
+    <div class="container">
+        {% block conteudo %}    
+            <h3>template modelo</h3>
+            <p>conteudo</p>    
+        {% endblock %}
+    </div>
+
+
+    {% block rodape %}
+        <div class="bg-ligth">
+            rodapé
+        </div>
+    {% endblock %}
+   
+
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
