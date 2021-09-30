@@ -1,0 +1,44 @@
+{% extends 'modelo.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+    <title>Login</title>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block banner_topo %}
+{% endblock %}
+
+{% block rodape %}
+{% endblock %}
+
+
+
+{% block conteudo %}
+
+   
+  
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <br>
+            <h3>Autenticação</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {{ form|crispy }}
+                <p align="center">
+                    <button href="{% url 'index' %}" class="btn btn-danger">Voltar</button>
+                    <button type="submit" class="btn btn-success">Entrar</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    <br>
+   
+
+{% endblock %}
+

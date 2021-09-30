@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'paginas',
     'cadastros',
+    'usuarios',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,3 +136,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#CONFIGURAÇÕES DE URL
+LOGIN_REDIRECT_URL = 'index' #para onde vai depois que faz login
+LOGIN_URL = 'login' #se a pessoa não tiver autenticada vai para login
+LOGOUT_REDIRECT_URL = 'login'  #para onde vai depois que faz logout
