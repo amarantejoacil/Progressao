@@ -141,4 +141,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #CONFIGURAÇÕES DE URL
 LOGIN_REDIRECT_URL = 'index' #para onde vai depois que faz login
 LOGIN_URL = 'login' #se a pessoa não tiver autenticada vai para login
-LOGOUT_REDIRECT_URL = 'login'  #para onde vai depois que faz logout
+LOGOUT_REDIRECT_URL = 'index'  #para onde vai depois que faz logout

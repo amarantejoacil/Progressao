@@ -35,16 +35,24 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Ajuda</a>
             </li>
-           
+            {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Usuários
+                {{ request.user }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{% url 'login' %}">Acesso</a>
+               
+                <a class="dropdown-item" href="{% url 'login' %}">Meus dados</a>
+                <a class="dropdown-item" href="{% url 'login' %}">Alterar Senha</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
                
               </div>
             </li>
+            {% else %}                  
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+                </li>
+            {% endif %}
           
           </ul>
         </div>
