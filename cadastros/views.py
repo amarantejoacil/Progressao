@@ -11,6 +11,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from braces.views import GroupRequiredMixin
 
+#usar o edita e excluir
+from django.shortcuts import get_object_or_404
+
 
 #CAMPO
 #CREATE
@@ -120,19 +123,18 @@ class AtividadeUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('listar-atividade')
 
 
-    def form_valid(self, form):
-        #obs1. antes do super o objeto com dados não foi criado
-    
+    def get_object(self, queryset=None):
+        #kwargs pega o valor referenciado digitado o codigo da url
+        # usuario n consegue acessar pela url, dados de outros...
+        # exemplo alterar dados por parametro url
+        
+        #não deixa acessar
+        #self.object = Atividade.objects.get(pk=self.kwargs['pk'], usuario=self.request.user) 
 
-        #pegando a instancia do meu usuario do models na hora do formulario
-        form.instance.usuario = self.request.user
 
-
-         #super = força a chamar o form_valid do createview
-        url = super().form_valid(form)
-        #obs2. depois do super o objeto com os dados foi criado
-
-        return url
+        #nao deixa acessar e redireciona para 404... futuramente podendo tratar
+        self.object = get_object_or_404(Atividade,pk=self.kwargs['pk'], usuario=self.request.user)      
+        return self.object
 
 #DELETE
 class AtividaDelete(LoginRequiredMixin, DeleteView):
