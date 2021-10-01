@@ -14,6 +14,7 @@ class Campo(models.Model):
 
 
 class Atividade(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
     numero = models.IntegerField()
     descricao = models.CharField('descrição', max_length=100)
     pontos = models.DecimalField(decimal_places=2, max_digits=8)

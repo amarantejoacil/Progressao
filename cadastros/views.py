@@ -1,4 +1,5 @@
 from django import urls
+from django.http import request
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
@@ -92,9 +93,23 @@ class CampoList(LoginRequiredMixin, ListView):
 class AtividadeCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Atividade
-    fields = '__all__'
+    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar-atividade')
+
+    def form_valid(self, form):
+        #obs1. antes do super o objeto com dados não foi criado
+    
+
+        #pegando a instancia do meu usuario do models na hora do formulario
+        form.instance.usuario = self.request.user
+
+
+         #super = força a chamar o form_valid do createview
+        url = super().form_valid(form)
+        #obs2. depois do super o objeto com os dados foi criado
+
+        return url
 
 #UPDATE
 class AtividadeUpdate(LoginRequiredMixin, UpdateView):
@@ -102,19 +117,40 @@ class AtividadeUpdate(LoginRequiredMixin, UpdateView):
     model = Atividade
     fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar-atividade')
+
+
+    def form_valid(self, form):
+        #obs1. antes do super o objeto com dados não foi criado
+    
+
+        #pegando a instancia do meu usuario do models na hora do formulario
+        form.instance.usuario = self.request.user
+
+
+         #super = força a chamar o form_valid do createview
+        url = super().form_valid(form)
+        #obs2. depois do super o objeto com os dados foi criado
+
+        return url
 
 #DELETE
 class AtividaDelete(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Atividade    
     template_name = 'cadastros/form-excluir.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar-atividade')
 
 #LIST
 class AtividaList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Atividade    
     template_name = 'cadastros/listas/atividade-list.html'
+
+
+    def get_queryset(self):
+        #self.object_lista = Atividade.objects.all()
+        self.object_lista = Atividade.objects.filter(usuario=self.request.user)
+        return self.object_lista
 
 
