@@ -14,6 +14,8 @@
                 <th>#</th>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Usuario</th>
+                <th>Contador</th>
                 <th>Opções</th>
             </tr>
 
@@ -23,6 +25,8 @@
                     <td>{{ c.pk }}</td>
                     <td>{{ c.nome }}</td>
                     <td>{{ c.descricao }}</td>
+                    <td>{{ c.usuario }}</td>
+                    <td>{{ c.contador }}</td>
                     <td>
                         <a href="{% url 'editar-campo' c.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
                         <a href="{% url 'excluir-campo' c.pk %}" class="btn btn-danger btn-sm"  title="Excluir">Excluir</a>

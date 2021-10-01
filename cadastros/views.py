@@ -1,3 +1,4 @@
+from django import urls
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
@@ -16,18 +17,58 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"grupo2"]
     model = Campo
-    fields = '__all__'
+    fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campo')
+
+    def form_valid(self, form):
+        #obs1. antes do super o objeto com dados não foi criado
+        
+
+        #pegando a instancia do meu usuario do models na hora do formulario
+        form.instance.usuario = self.request.user
+
+
+        #super = força a chamar o form_valid do createview
+        url = super().form_valid(form)
+        #obs2. depois do super o objeto com os dados foi criado
+
+        self.object.contador += 1
+        self.object.save()
+
+
+
+        return url
+
 
 #UPDATE
 class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"grupo2"]
     model = Campo
-    fields = '__all__'
+    fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campo')  
+
+
+    def form_valid(self, form):
+        #obs1. antes do super o objeto com dados não foi criado
+    
+
+        #pegando a instancia do meu usuario do models na hora do formulario
+        form.instance.usuario = self.request.user
+
+
+         #super = força a chamar o form_valid do createview
+        url = super().form_valid(form)
+        #obs2. depois do super o objeto com os dados foi criado
+
+        self.object.contador += 1
+        self.object.save()
+
+
+
+        return url
 
 #DELETE
 class CampoDelete(GroupRequiredMixin, LoginRequiredMixin, DeleteView):
