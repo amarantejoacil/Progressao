@@ -32,7 +32,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'listar-atividade' %}">Cadastros de Atividade</a>
             </li>
-           
+          
             <li class="nav-item">
               <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
             </li>
@@ -54,8 +54,11 @@
             </li>
             {% else %}                  
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Entrar</a>
-                </li>
+                  <a class="nav-link" href="{% url 'registrar' %}">Registrar</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>               
             {% endif %}
           
           </ul>
