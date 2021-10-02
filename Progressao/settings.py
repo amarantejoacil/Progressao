@@ -142,3 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'index' #para onde vai depois que faz login
 LOGIN_URL = 'login' #se a pessoa não tiver autenticada vai para login
 LOGOUT_REDIRECT_URL = 'index'  #para onde vai depois que faz logout
+
+
+#MEDIA_ROOT = '/uploads/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

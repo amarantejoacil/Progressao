@@ -119,9 +119,19 @@ class CampoList(LoginRequiredMixin, ListView):
 class AtividadeCreate(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Atividade
-    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
-    template_name = 'cadastros/form.html'
+    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo', 'arquivo']
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-atividade')
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = 'Cadastro de Atividade'
+        context['botao'] = 'Cadastrar'
+        #enviando um html para view... 
+        #anotação no formhtml autoscape força intepretar o html
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        return context
 
     def form_valid(self, form):
         #obs1. antes do super o objeto com dados não foi criado
@@ -141,9 +151,19 @@ class AtividadeCreate(LoginRequiredMixin, CreateView):
 class AtividadeUpdate(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     model = Atividade
-    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo']
-    template_name = 'cadastros/form.html'
+    fields = ['numero', 'descricao', 'pontos', 'detalhes', 'campo', 'arquivo']
+    template_name = 'cadastros/form-upload.html'
     success_url = reverse_lazy('listar-atividade')
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = 'Alterar de Atividade'
+        context['botao'] = 'Salvar'
+        #enviando um html para view... 
+        #anotação no formhtml autoscape força intepretar o html
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        return context
 
 
     def get_object(self, queryset=None):
