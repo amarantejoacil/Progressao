@@ -18,6 +18,7 @@
                 <th>Detalhes</th>
                 <th>Campos</th>
                 <th>Usuario</th>
+                <th>Arquivo</th>
                 <th>Opção</th>             
             </tr>
 
@@ -30,7 +31,10 @@
                     <td>{{ object.pontos  }}</td>
                     <td>{{ object.detalhes }}</td>
                     <td>{{ object.campo }}</td>
-                    <td>{{ object.usuario }}</td>
+                    <td>{{ object.usuario }}</td>                   
+                    <td><a href="{{ object.arquivo.url|default_if_none:'#' }}">Ver</a></td>
+                    <!--quando n envia imagem da um erro, pesquisar depois-->
+                    
                     <td>
                         <a href="{% url 'editar-atividade' object.pk %}" class="btn btn-warning btn-sm" title="Editar">Editar</a>
                         <a href="{% url 'excluir-atividade' object.pk %}" class="btn btn-danger btn-sm"  title="Excluir">Excluir</a>

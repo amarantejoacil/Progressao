@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'cadastros',
     'usuarios',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,3 +148,4 @@ LOGOUT_REDIRECT_URL = 'index'  #para onde vai depois que faz logout
 #MEDIA_ROOT = '/uploads/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
