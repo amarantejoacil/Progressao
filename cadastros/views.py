@@ -25,6 +25,21 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campo')
 
+
+    #passando context personalizado
+    #enviado dados para form.html
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = 'Cadastro de Campos'
+        context['botao'] = 'Cadastrar'
+        #enviando um html para view... 
+        #anotação no formhtml autoscape força intepretar o html
+        context['icone'] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        return context
+
+
+        
+
     def form_valid(self, form):
         #obs1. antes do super o objeto com dados não foi criado
         
@@ -52,7 +67,15 @@ class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Campo
     fields = ['nome', 'descricao']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar-campo')  
+    success_url = reverse_lazy('listar-campo')
+
+    #passando context personalizado
+    #enviado dados para form.html
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['titulo'] = 'Alterar de Campos'
+        context['botao'] = 'Salvar'
+        return context
 
 
     def form_valid(self, form):

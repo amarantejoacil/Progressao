@@ -11,7 +11,7 @@
 
 {% block conteudo %}
 
-    <h3>Formulário</h3>
+    <h3>{{ titulo }}</h3>
     <p>Texto conteúdo aqui!</p>
 
     <form action="" method="POST">
@@ -19,7 +19,15 @@
 
         {{ form|crispy }}
 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">{{ botao }}
+
+            <!-- força interpreta o texto que vem no icone como html-->
+            {% autoescape off %}
+                {{ icone }}
+            {% endautoescape %}
+
+
+        </button>
     </form>
    
 
