@@ -6,7 +6,7 @@ class Campo(models.Model):
     nome = models.CharField('nome', max_length=100)
     descricao = models.CharField('descrição', max_length=100)
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
-    contador = models.IntegerField('contador')
+    contador = models.IntegerField('contador', null=True, blank=True, default=1)
 
 
     def __str__(self):

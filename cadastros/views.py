@@ -21,7 +21,7 @@ class CampoCreate(GroupRequiredMixin, LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"grupo2"]
     model = Campo
-    fields = ['nome', 'descricao']
+    fields = ['nome', 'descricao', 'contador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campo')
 
@@ -65,7 +65,7 @@ class CampoUpdate(GroupRequiredMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
     group_required = [u"Administrador", u"grupo2"]
     model = Campo
-    fields = ['nome', 'descricao']
+    fields = ['nome', 'descricao', 'contador']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar-campo')
 
@@ -111,6 +111,7 @@ class CampoList(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login')
     model = Campo   
     template_name = 'cadastros/listas/campo-list.html'
+    paginate_by = 3
     
 
 
