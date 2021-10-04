@@ -1,0 +1,23 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    <title>Pagina inicial</title>
+{% endblock %}
+
+
+
+{% block conteudo %}
+
+    <h3>Página Inicial</h3>  
+    {% if user.perfil.nome_completo %}
+        <p>Bem vindo ao sistema {{ user.perfil.nome_completo }}</p>
+    {% else %} 
+        <p>Você precisa atualizar seu cadastro. Acesse <a href="atualizar-dados">Meus dados</a></p>
+    {% endif %}    
+
+   
+
+{% endblock %}
+
