@@ -20,7 +20,7 @@ class Atividade(models.Model):
     pontos = models.DecimalField(decimal_places=2, max_digits=8)
     detalhes = models.CharField('detalhes', max_length=100)
     campo = models.ForeignKey('Campo', on_delete=models.PROTECT)
-    arquivo = models.FileField(upload_to='pdf/', null=True, blank=True)
+    arquivo = models.FileField(upload_to='pdf/', null=True, blank=True, default=None)
 
     def __str__(self):
         return self.descricao 

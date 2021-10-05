@@ -4,9 +4,18 @@
 
 
 {% block conteudo %}
+
 <h3>Listas de atividade</h3>
 <a href="{% url 'cadastrar-atividade' %}" class="btn btn-primary btn-sm">Adicionar atividade</a>
 <hr>
+
+
+<form action="?" method="GET">
+    <input type="text" class="p-1 border" name="nome" id="" value="{{ request.GET.nome  }}" autocomplete="off" placeholder="Descrição">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <a href="{% url 'listar-atividade' %}" class="btn btn-ligth">Limpar</a>
+    <br><br>
+</form>
 
 <div class="table-responsive">
     <table class="table table-striped" id="tabela-listar">
@@ -35,8 +44,12 @@
                     <td>{{ object.pontos  }}</td>
                     <td>{{ object.detalhes }}</td>
                     <td>{{ object.campo }}</td>
-                    <td>{{ object.usuario }}</td>                   
-                    <td><a href="{{ object.arquivo.url|default_if_none:'#' }}">Ver</a></td>
+                    <td>{{ object.usuario }}</td>
+                    {% if object.arquivo %}                             
+                        <td><a href="{{ object.arquivo.url }}">Ver</a></td>
+                    {% else %}          
+                        <td></td>
+                    {% endif %}    
                     <!--quando n envia imagem da um erro, pesquisar depois-->
                     
                     <td>
@@ -58,7 +71,7 @@
 {% block scripts %}
     <script>
         $(document).ready(function () {
-            alert("importação ok")
+            //alert("importação ok")
             $('#tabela-listar').DataTable({
         responsive: true,
         // "bSort": false,
