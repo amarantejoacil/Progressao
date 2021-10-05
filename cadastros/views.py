@@ -3,7 +3,7 @@ from django.http import request
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
-from .models import Campo, Atividade
+from .models import Campo, Atividade, Produto
 
 from django.urls import reverse_lazy
 
@@ -198,5 +198,26 @@ class AtividaList(LoginRequiredMixin, ListView):
         #self.object_lista = Atividade.objects.all()
         self.object_lista = Atividade.objects.filter(usuario=self.request.user)
         return self.object_lista
+
+
+#LIST PRODUTO
+class ProdutoList(LoginRequiredMixin, ListView):
+    #verificar se o usuario esta logado
+    login_url = reverse_lazy('login')
+    model = Produto   
+    template_name = 'cadastros/listas/produto-list.html'
+    paginate_by = 3
+
+    def get_queryset(self):
+        proddescricao = self.request.GET.get('proddescricao')
+
+        #verifico se existe ou não;
+        if proddescricao:            
+            produtos = Produto.objects.filter(descricao__icontains=proddescricao)
+        else:
+            produtos = Produto.objects.all()
+        
+        return produtos
+    
 
 

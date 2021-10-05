@@ -1,4 +1,4 @@
-from cadastros.views import CampoCreate, CampoUpdate , CampoDelete, CampoList
+from cadastros.views import CampoCreate, CampoUpdate , CampoDelete, CampoList, ProdutoList
 from cadastros.views import AtividadeCreate, AtividadeUpdate, AtividaDelete, AtividaList
 from django.urls import path
 #from .views import 
@@ -13,5 +13,7 @@ urlpatterns = [
     path('cadastrar/atividade', AtividadeCreate.as_view(), name='cadastrar-atividade'), 
     path('editar/atividade/<int:pk>/', AtividadeUpdate.as_view(), name='editar-atividade'),   
     path('excluir/atividade/<int:pk>/', AtividaDelete.as_view(), name='excluir-atividade'),   
-    path('listar/atividade/', AtividaList.as_view(), name='listar-atividade'),   
+    path('listar/atividade/', AtividaList.as_view(), name='listar-atividade'),  
+    
+    path('listar/produto/', ProdutoList.as_view(), name='listar-produto'), 
 ]

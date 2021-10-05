@@ -24,3 +24,12 @@ class Atividade(models.Model):
 
     def __str__(self):
         return self.descricao 
+
+
+class Produto(models.Model):
+    descricao = models.CharField('descrição', max_length=100)
+    quantidade = models.IntegerField()
+    preco = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return self.descricao 

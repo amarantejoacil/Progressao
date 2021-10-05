@@ -10,12 +10,6 @@
 <hr>
 
 
-<form action="?" method="GET">
-    <input type="text" class="p-1 border" name="nome" id="" value="{{ request.GET.nome  }}" autocomplete="off" placeholder="Descrição">
-    <button type="submit" class="btn btn-primary">Buscar</button>
-    <a href="{% url 'listar-atividade' %}" class="btn btn-ligth">Limpar</a>
-    <br><br>
-</form>
 
 <div class="table-responsive">
     <table class="table table-striped" id="tabela-listar">
